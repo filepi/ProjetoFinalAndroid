@@ -9,15 +9,12 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.Loader;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -31,7 +28,7 @@ import pojo.Materia;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MateriaListFragment extends Fragment  implements SearchView.OnQueryTextListener ,LoaderManager.LoaderCallbacks<ArrayList<Materia>> {
+public class MateriaListFragment extends Fragment  implements LoaderManager.LoaderCallbacks<ArrayList<Materia>> {
 
     private static final int LOADER_ID = 0;
     private static final String QUERY_PARAM = "param";
@@ -40,7 +37,6 @@ public class MateriaListFragment extends Fragment  implements SearchView.OnQuery
     RecyclerView mRecyclerView;
     MateriaAdapter mAdapter;
     List<Materia> mMateriaList;
-    SearchView mSearchView;
 
     public MateriaListFragment() {
         // Required empty public constructor
@@ -49,11 +45,6 @@ public class MateriaListFragment extends Fragment  implements SearchView.OnQuery
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.menu_search, menu);
-
-        MenuItem searchItem = menu.findItem(R.id.search);
-        mSearchView = (SearchView) MenuItemCompat.getActionView(searchItem);
-        mSearchView.setOnQueryTextListener(this);
     }
 
     @Override
@@ -111,22 +102,6 @@ public class MateriaListFragment extends Fragment  implements SearchView.OnQuery
             //mEmptyView.setVisibility(View.VISIBLE);
         }
 
-    }
-
-
-
-    @Override
-    public boolean onQueryTextSubmit(String query) {
-        Bundle params = new Bundle();
-        params.putString(QUERY_PARAM, query);
-        mLoaderManager.restartLoader(LOADER_ID, params, this);
-        mSearchView.clearFocus();
-        return true;
-    }
-
-    @Override
-    public boolean onQueryTextChange(String newText) {
-        return true;
     }
 
     @Override
