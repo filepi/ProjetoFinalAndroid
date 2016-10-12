@@ -2,6 +2,8 @@ package pojo;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Arrays;
+
 /**
  * Created by felipe on 24/09/16.
  */
@@ -54,5 +56,14 @@ public class Materia {
         this.questoes_favoritas = questoes_favoritas;
     }
 
-    
+    @Override
+    public String toString() {
+        return "Materia{" +
+                "ativo=" + ativo +
+                ", codigo=" + codigo +
+                ", descricao='" + descricao + '\'' +
+                ", professor='" + professor + '\'' +
+                ", questoes_favoritas=" + Arrays.toString(questoes_favoritas) +
+                '}';
+    }
 }

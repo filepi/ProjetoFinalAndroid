@@ -9,6 +9,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.support.annotation.Nullable;
+import android.widget.Toast;
 
 /**
  * Created by felipe on 27/09/16.
@@ -17,13 +18,13 @@ import android.support.annotation.Nullable;
 public class MateriasProvider extends ContentProvider {
 
     private static final String PATH = "materias";
-    private static final String AUTHORITY = "br.com.aprendendodireito";
+    private static final String AUTHORITY = "nomeDaAuthority";
 
     // BASE_URI   = "content://" + AUTHORITY +"/"+ PATH
     public static Uri BASE_URI = Uri.parse("content://"+ AUTHORITY);
 
-    // MOVIES_URI = "content://" + AUTHORITY +"/"+ PATH +"/movies"
-    public static Uri MOVIES_URI = BASE_URI.withAppendedPath(BASE_URI, PATH);
+    // MATERIAS_URI = "content://" + AUTHORITY +"/"+ PATH +"/movies"
+    public static Uri MATERIAS_URI = BASE_URI.withAppendedPath(BASE_URI, PATH);
 
     // Conforme implementação do getType(), nosso provider aceita dois tipos de Uri:
     // GENERICA, usada no insert e query   = content://br.com.nglauber.movies/movies
@@ -70,6 +71,7 @@ public class MateriasProvider extends ContentProvider {
         if (uriType == TYPE_GENERIC){
             SQLiteDatabase db = mHelper.getWritableDatabase();
             long id = db.insert(MateriaContract.TABLE_NAME, null, values);
+            Toast.makeText(getContext(), "id: " +id + " inserido no banco", Toast.LENGTH_SHORT).show();
             db.close();
             // Se der erro na inclusão o id retornado é -1,
             // então levantamos a exceção para ser tratada na tela.
@@ -77,7 +79,7 @@ public class MateriasProvider extends ContentProvider {
                 throw new RuntimeException("Error inserting moving.");
             }
             notifyChanges(uri);
-            return ContentUris.withAppendedId(MOVIES_URI, id);
+            return ContentUris.withAppendedId(MATERIAS_URI, id);
 
         } else {
             throw new IllegalArgumentException("Invalid Uri");

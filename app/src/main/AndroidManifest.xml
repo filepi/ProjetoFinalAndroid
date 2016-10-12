@@ -17,6 +17,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".MateriaDetalheActivity"/>
+        
+        <provider
+            android:name="database.MateriasProvider"
+            android:authorities="nomeDaAuthority"
+            android:enabled="true"
+            android:exported="false"/>
     </application>
-
 </manifest>

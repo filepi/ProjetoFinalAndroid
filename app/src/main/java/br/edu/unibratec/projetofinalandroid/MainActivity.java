@@ -1,5 +1,8 @@
 package br.edu.unibratec.projetofinalandroid;
 
+import android.content.ContentUris;
+import android.content.ContentValues;
+import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -11,6 +14,8 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.widget.Toast;
 
+import database.MateriaContract;
+import database.MateriasProvider;
 import fragments.MateriaListFragment;
 import fragments.MateriasFavoritasFragment;
 import fragments.OnMateriaClickListener;
@@ -32,27 +37,37 @@ public class MainActivity extends AppCompatActivity implements OnMateriaClickLis
 
     }
 
+
     @Override
     public void onMovieClick(Materia materia, int position) {
-        // Esse método é chamado pelas telas de listagem quando o usuário
-        // clica em um item da lista (ver MovieListFragment e FavoriteMoviesFragment)
         if (getResources().getBoolean(R.bool.phone)) {
             // Se for smartphone, abra uma nova activity
-            Toast.makeText(this, materia.getDescricao() + " salva com sucesso. #sqn", Toast.LENGTH_SHORT).show();
-            /*
-            Intent it = new Intent(MainActivity.this, MateriaDetalheActivity.class);
-            it.putExtra(Materia.EXTRA_MATERIA, materia);
-            startActivity(it);
-            * */
+            adicionaMateriaFavoria(materia);
+
+            //Intent it = new Intent(MainActivity.this, MateriaDetalheActivity.class);
+            //it.putExtra(Materia.EXTRA_MATERIA, materia);
+            //startActivity(it);
+
         } else {
             // Se for tablet, DetalheActivityexiba um fragment a direita
-            /*DetailMovieFragment detailMovieFragment = DetailMovieFragment.newInstance(movie);
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.placeholderDetail, detailMovieFragment)
-                    .commit();
-                    */
+            //DetailMovieFragment detailMovieFragment = DetailMovieFragment.newInstance(movie);
+            //getSupportFragmentManager()
+              //      .beginTransaction()
+                //    .replace(R.id.placeholderDetail, detailMovieFragment)
+                  //  .commit();
         }
+
+    }
+
+    private long adicionaMateriaFavoria(Materia materia)
+    {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(MateriaContract.COL_MATERIA_DESCRICAO   , materia.getDescricao());
+        contentValues.put(MateriaContract.COL_MATERIA_PROFESSOR, materia.getProfessor());
+        Toast.makeText(this, materia.toString(), Toast.LENGTH_SHORT).show();
+
+        Uri uri = this.getContentResolver().insert(MateriasProvider.MATERIAS_URI, contentValues);
+        return ContentUris.parseId(uri);
 
     }
 
@@ -73,8 +88,10 @@ public class MainActivity extends AppCompatActivity implements OnMateriaClickLis
         }
         @Override
         public CharSequence getPageTitle(int position) {
-            if (position == 1) return getString(R.string.tab_materias);
-            else return getString(R.string.tab_materias_favoritas);
+            if (position == 1)
+                return getString(R.string.tab_materias);
+            else
+                return getString(R.string.tab_materias_favoritas);
         }
         @Override
         public int getCount() {

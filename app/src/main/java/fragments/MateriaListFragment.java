@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,10 +29,12 @@ import pojo.Materia;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MateriaListFragment extends Fragment  implements LoaderManager.LoaderCallbacks<ArrayList<Materia>> {
+public class MateriaListFragment
+        extends Fragment
+        implements LoaderManager.LoaderCallbacks<ArrayList<Materia>>
+    {
 
     private static final int LOADER_ID = 0;
-    private static final String QUERY_PARAM = "param";
 
     private LoaderManager mLoaderManager;
     RecyclerView mRecyclerView;
@@ -40,11 +43,6 @@ public class MateriaListFragment extends Fragment  implements LoaderManager.Load
 
     public MateriaListFragment() {
         // Required empty public constructor
-    }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
@@ -64,6 +62,8 @@ public class MateriaListFragment extends Fragment  implements LoaderManager.Load
         });
     }
 
+
+    //onCreate do Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -86,11 +86,15 @@ public class MateriaListFragment extends Fragment  implements LoaderManager.Load
         return view;
     }
 
+
+
+    //Método inicial do Loader
     @Override
     public Loader<ArrayList<Materia>> onCreateLoader(int id, Bundle args) {
         return new RESTConnection(getContext());
     }
 
+    //Quando o loader é concluído
     @Override
     public void onLoadFinished(Loader<ArrayList<Materia>> loader, ArrayList<Materia> data) {
         if (data != null && data.size() > 0){
@@ -104,8 +108,8 @@ public class MateriaListFragment extends Fragment  implements LoaderManager.Load
 
     }
 
-    @Override
-    public void onLoaderReset(Loader<ArrayList<Materia>> loader) {
 
+        @Override
+        public void onLoaderReset(Loader<ArrayList<Materia>> loader) {
+        }
     }
-}

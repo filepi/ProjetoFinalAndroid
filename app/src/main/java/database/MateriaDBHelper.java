@@ -22,7 +22,7 @@ public class MateriaDBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String sqlQueryCreateTable =
                 "CREATE TABLE " + MateriaContract.TABLE_NAME + " (" +
-                MateriaContract._ID + "INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                MateriaContract._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 MateriaContract.COL_MATERIA_DESCRICAO + " TEXT NOT NULL, " +
                 MateriaContract.COL_MATERIA_PROFESSOR + " TEXT, " +
                 MateriaContract.COL_MATERIA_ATIVO + " INTEGER)";
