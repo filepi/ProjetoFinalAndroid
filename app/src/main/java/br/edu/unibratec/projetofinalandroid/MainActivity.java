@@ -12,6 +12,7 @@ import android.os.Bundle;
 
 
 import android.support.design.widget.TabLayout;
+import android.view.View;
 import android.widget.Toast;
 
 import database.MateriaContract;
@@ -39,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements OnMateriaClickLis
 
 
     @Override
-    public void onMovieClick(Materia materia, int position) {
+    public void onMovieClick(View view, Materia materia, int position) {
         if (getResources().getBoolean(R.bool.phone)) {
             // Se for smartphone, abra uma nova activity
             adicionaMateriaFavoria(materia);

@@ -69,6 +69,7 @@ public class MateriasProvider extends ContentProvider {
         // Como não temos o ID no momento da inserção, só aceitamos
         // inserir usando a Uri genérica.
         if (uriType == TYPE_GENERIC){
+
             SQLiteDatabase db = mHelper.getWritableDatabase();
             long id = db.insert(MateriaContract.TABLE_NAME, null, values);
             Toast.makeText(getContext(), "id: " +id + " inserido no banco", Toast.LENGTH_SHORT).show();

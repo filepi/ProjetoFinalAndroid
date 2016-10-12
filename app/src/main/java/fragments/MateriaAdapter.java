@@ -40,7 +40,7 @@ public class MateriaAdapter extends RecyclerView.Adapter<MateriaAdapter.VH> {
             public void onClick(View view) {
                 int pos = viewHolder.getAdapterPosition();
                 if (mMateriaClickListener != null){
-                    mMateriaClickListener.onMovieClick(mMaterias.get(pos), pos);
+                    mMateriaClickListener.onMovieClick(view, mMaterias.get(pos), pos);
                 }
             }
         });

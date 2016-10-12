@@ -10,7 +10,7 @@ import java.util.Arrays;
 
 public class Materia {
 
-    private int codigo;
+    private long codigo;
     private String descricao;
     private boolean ativo;
     private String professor;
@@ -24,11 +24,11 @@ public class Materia {
         this.ativo = ativo;
     }
 
-    public int getCodigo() {
+    public long getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(long codigo) {
         this.codigo = codigo;
     }
 
