@@ -65,8 +65,6 @@ public class MateriaListFragment extends Fragment  implements SearchView.OnQuery
         mAdapter.setMateriaClickListener(new OnMateriaClickListener() {
             @Override
             public void onMovieClick(Materia materia, int position) {
-                // Nessa abordagem o click é mais lento,
-                // mas não precisamos usar um atributo adicional
                 Activity activity = getActivity();
                 if (activity instanceof OnMateriaClickListener){
                     ((OnMateriaClickListener)activity).onMovieClick(materia, position);
