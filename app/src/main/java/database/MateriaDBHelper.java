@@ -4,6 +4,9 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import br.edu.unibratec.projetofinalandroid.MainActivity;
+import fragments.MateriasFavoritasFragment;
+
 /**
  * Created by felipe on 27/09/16.
  */

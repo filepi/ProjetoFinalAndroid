@@ -19,10 +19,9 @@ import database.MateriaContract;
 import database.MateriasProvider;
 import fragments.MateriaListFragment;
 import fragments.MateriasFavoritasFragment;
-import fragments.OnMateriaClickListener;
 import pojo.Materia;
 
-public class MainActivity extends AppCompatActivity implements OnMateriaClickListener {
+public class MainActivity extends AppCompatActivity implements OnMateriaClickListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +36,6 @@ public class MainActivity extends AppCompatActivity implements OnMateriaClickLis
         tabLayout.setupWithViewPager(viewPager);
 
     }
-
 
     @Override
     public void onMovieClick(View view, Materia materia, int position) {
@@ -79,10 +77,13 @@ public class MainActivity extends AppCompatActivity implements OnMateriaClickLis
         }
         @Override
         public Fragment getItem(int position) {
-            if (position == 1){
+            if (position == 1)
+            {
                 MateriaListFragment materiasListFragment = new MateriaListFragment();
                 return materiasListFragment;
-            } else {
+            }
+            else
+            {
                 MateriasFavoritasFragment materiasFavoritasFragment = new MateriasFavoritasFragment();
                 return materiasFavoritasFragment;
             }

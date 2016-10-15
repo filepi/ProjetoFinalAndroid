@@ -1,6 +1,7 @@
 package fragments;
 
 import android.database.Cursor;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,6 +15,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import adapter.MateriaCursorAdapter;
+import br.edu.unibratec.projetofinalandroid.OnMateriaClickListener;
 import br.edu.unibratec.projetofinalandroid.R;
 import database.MateriaContract;
 import database.MateriasProvider;
@@ -27,6 +30,7 @@ public class MateriasFavoritasFragment  extends Fragment implements LoaderManage
     ListView listView;
     OnMateriaClickListener mMateriaClickListener;
     MateriaCursorAdapter mAdapter;
+    public static boolean firstrun = true;
 
     @Nullable
     @Override
@@ -45,6 +49,22 @@ public class MateriasFavoritasFragment  extends Fragment implements LoaderManage
                 }
             }
         });
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            listView.setNestedScrollingEnabled(true);
+        }
+
+        // Inicializamos e definimos o adapter da lista
+        mAdapter = new MateriaCursorAdapter(getActivity(), null);
+        listView.setAdapter(mAdapter);
+
+        // Definimos a view a ser exibida se a lista estiver vazia
+        //listView.setEmptyView(view.findViewById(R.id.empty_view_root));
+
+        if (!firstrun)
+        // Inicializamos o loader para trazer os registros em background
+        getLoaderManager().initLoader(0, null, this);
+
         return view;
     }
 
@@ -68,7 +88,6 @@ public class MateriasFavoritasFragment  extends Fragment implements LoaderManage
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        Toast.makeText(getContext(), "onCreateLoader", Toast.LENGTH_SHORT).show();
         return new CursorLoader
                 (
                 getActivity(),

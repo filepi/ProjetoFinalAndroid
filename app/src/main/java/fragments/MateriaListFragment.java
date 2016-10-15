@@ -2,7 +2,6 @@ package fragments;
 
 
 import android.app.Activity;
-import android.graphics.Movie;
 import android.support.annotation.Nullable;
 import android.support.v4.app.LoaderManager;
 import android.content.res.Configuration;
@@ -13,15 +12,14 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import adapter.MateriaAdapter;
+import br.edu.unibratec.projetofinalandroid.OnMateriaClickListener;
 import br.edu.unibratec.projetofinalandroid.R;
 import http.RESTConnection;
 import pojo.Materia;
@@ -85,8 +83,6 @@ public class MateriaListFragment
 
         return view;
     }
-
-
 
     //Método inicial do Loader
     @Override

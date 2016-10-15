@@ -1,4 +1,4 @@
-package fragments;
+package br.edu.unibratec.projetofinalandroid;
 
 import android.view.View;
 

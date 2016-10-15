@@ -1,4 +1,4 @@
-package fragments;
+package adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -10,6 +10,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import br.edu.unibratec.projetofinalandroid.R;
+import br.edu.unibratec.projetofinalandroid.OnMateriaClickListener;
 import pojo.Materia;
 
 /**
