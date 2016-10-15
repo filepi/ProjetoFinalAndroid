@@ -1,8 +1,10 @@
 package fragments;
 
+import android.content.Context;
 import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
@@ -27,14 +29,30 @@ import pojo.Materia;
  */
 public class MateriasFavoritasFragment  extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
-    ListView listView;
     OnMateriaClickListener mMateriaClickListener;
+    ListView listView;
     MateriaCursorAdapter mAdapter;
-    public static boolean firstrun = true;
+    boolean mFirstRun;
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        // Registrando o listener para saber quando movie foi clicado
+        // Essa abordagem é a mais usada, e mais rápida
+        // entretanto requer um atributo adicional
+        if (context instanceof OnMateriaClickListener) {
+            mMateriaClickListener = (OnMateriaClickListener) context;
+        }
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //mFirstRun = savedInstanceState == null;
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_materias_favoritas_list, container, false);
         listView = (ListView) view.findViewById(R.id.lista_materias_favoritas);
@@ -61,7 +79,6 @@ public class MateriasFavoritasFragment  extends Fragment implements LoaderManage
         // Definimos a view a ser exibida se a lista estiver vazia
         //listView.setEmptyView(view.findViewById(R.id.empty_view_root));
 
-        if (!firstrun)
         // Inicializamos o loader para trazer os registros em background
         getLoaderManager().initLoader(0, null, this);
 
@@ -97,10 +114,20 @@ public class MateriasFavoritasFragment  extends Fragment implements LoaderManage
     }
 
     @Override
-    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+    public void onLoadFinished(Loader<Cursor> loader, final Cursor data) {
+        mAdapter.swapCursor(data);
+        if (data != null
+                && data.getCount() > 0
+                && getResources().getBoolean(R.bool.tablet)
+                && mFirstRun){
 
-        Toast.makeText(getContext(), "onLoadFinished", Toast.LENGTH_SHORT).show();
-    }
+            new Handler().post(new Runnable() {
+                @Override
+                public void run() {
+                    selectMateria(null, 0, data);
+                }
+            });
+        } }
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
