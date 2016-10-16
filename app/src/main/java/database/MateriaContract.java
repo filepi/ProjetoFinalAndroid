@@ -16,9 +16,8 @@ public interface MateriaContract extends BaseColumns {
 
     String [] LIST_COLUMNS  = new String[]
     {
-        MateriaContract.TABLE_NAME,
-        MateriaContract.COL_MATERIA_DESCRICAO,
-        MateriaContract.COL_MATERIA_CODIGO,
-        MateriaContract.COL_MATERIA_PROFESSOR
+            MateriaContract._ID,
+            MateriaContract.COL_MATERIA_PROFESSOR,
+            MateriaContract.COL_MATERIA_DESCRICAO
     };
 }

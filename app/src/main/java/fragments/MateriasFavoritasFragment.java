@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -80,6 +81,7 @@ public class MateriasFavoritasFragment  extends Fragment implements LoaderManage
         //listView.setEmptyView(view.findViewById(R.id.empty_view_root));
 
         // Inicializamos o loader para trazer os registros em background
+
         getLoaderManager().initLoader(0, null, this);
 
         return view;
@@ -105,16 +107,14 @@ public class MateriasFavoritasFragment  extends Fragment implements LoaderManage
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        return new CursorLoader
-                (
-                getActivity(),
-                MateriasProvider.MATERIAS_URI,
-                MateriaContract.LIST_COLUMNS, null, null, null
-                );
+        //return null;
+        Log.d("FSB", "onCreateLoader");
+        return new CursorLoader (getActivity(),MateriasProvider.MATERIAS_URI,MateriaContract.LIST_COLUMNS, null, null, null);
     }
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, final Cursor data) {
+        Log.d("FSB", "onLoadFinished");
         mAdapter.swapCursor(data);
         if (data != null
                 && data.getCount() > 0
@@ -131,7 +131,8 @@ public class MateriasFavoritasFragment  extends Fragment implements LoaderManage
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
-        Toast.makeText(getContext(), "onLoadReset", Toast.LENGTH_SHORT).show();
+        Log.d("FSB", "onLoaderReset");
+        mAdapter.swapCursor(null);
 
     }
 }
