@@ -2,13 +2,14 @@ package pojo;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
 /**
  * Created by felipe on 24/09/16.
  */
 
-public class Materia {
+public class Materia implements Serializable{
 
     private long codigo;
     private String descricao;
@@ -66,4 +67,6 @@ public class Materia {
                 ", questoes_favoritas=" + Arrays.toString(questoes_favoritas) +
                 '}';
     }
+
+
 }

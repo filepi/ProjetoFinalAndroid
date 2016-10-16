@@ -2,6 +2,7 @@ package br.edu.unibratec.projetofinalandroid;
 
 import android.content.ContentUris;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -23,6 +24,8 @@ import pojo.Materia;
 
 public class MainActivity extends AppCompatActivity implements OnMateriaClickListener{
 
+    public static final String EXTRA_MATERIA = "materia";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,15 +41,13 @@ public class MainActivity extends AppCompatActivity implements OnMateriaClickLis
     }
 
     @Override
-    public void onMovieClick(View view, Materia materia, int position) {
+    public void onMateriaClick(View view, Materia materia, int position) {
         if (getResources().getBoolean(R.bool.phone)) {
             // Se for smartphone, abra uma nova activity
-            adicionaMateriaFavoria(materia);
 
-            //Intent it = new Intent(MainActivity.this, MateriaDetalheActivity.class);
-            //it.putExtra(Materia.EXTRA_MATERIA, materia);
-            //startActivity(it);
-
+            Intent it = new Intent(MainActivity.this, MateriaDetalheActivity.class);
+            it.putExtra(EXTRA_MATERIA, materia);
+            startActivity(it);
         } else {
             // Se for tablet, DetalheActivityexiba um fragment a direita
             //DetailMovieFragment detailMovieFragment = DetailMovieFragment.newInstance(movie);

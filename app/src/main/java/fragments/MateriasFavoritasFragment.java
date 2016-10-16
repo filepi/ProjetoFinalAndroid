@@ -49,7 +49,7 @@ public class MateriasFavoritasFragment  extends Fragment implements LoaderManage
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //mFirstRun = savedInstanceState == null;
+        mFirstRun = savedInstanceState == null;
     }
 
     @Override
@@ -93,7 +93,7 @@ public class MateriasFavoritasFragment  extends Fragment implements LoaderManage
             // perceba que esse Movie não tem todos os campos. Pois na tela
             // de listagem apenas os campos necessários são utilizados
             Materia materia = materiaItemFromCursor(cursor);
-            mMateriaClickListener.onMovieClick(view, materia, position);
+            mMateriaClickListener.onMateriaClick(view, materia, position);
         }
     }
 

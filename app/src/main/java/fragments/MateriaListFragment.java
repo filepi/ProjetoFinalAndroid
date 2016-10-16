@@ -51,10 +51,10 @@ public class MateriaListFragment
         mAdapter = new MateriaAdapter(getActivity(), mMateriaList);
         mAdapter.setMateriaClickListener(new OnMateriaClickListener() {
             @Override
-            public void onMovieClick(View view, Materia materia, int position) {
+            public void onMateriaClick(View view, Materia materia, int position) {
                 Activity activity = getActivity();
                 if (activity instanceof OnMateriaClickListener){
-                    ((OnMateriaClickListener)activity).onMovieClick(view, materia, position);
+                    ((OnMateriaClickListener)activity).onMateriaClick(view, materia, position);
                 }
             }
         });
