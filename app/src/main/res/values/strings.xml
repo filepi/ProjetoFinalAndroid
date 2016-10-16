@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Guia do Concurseiro</string>
-    <string name="tab_materias">Matérias</string>
-    <string name="tab_materias_favoritas">Favoritas</string>
-    <string name="hint_search">Digite uma matéria</string>
+    <string name="tab_materias">Todas Matérias</string>
+    <string name="tab_materias_favoritas">Minhas Favoritas</string>
+    <string name="full_description_todo"> Este espaço está reservado para uma descrição mais detalhada da activity. A implementação virá na versão 2.0 deste aplicativo =). A ideia aqui, por enquanto, é ser aprovado na cadeira de Android, abrangendo todos os requisitos solicitados por @nglauber." </string>
+    <string name="btn_remove_favorite">Desfavoritar</string>
 </resources>

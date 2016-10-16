@@ -42,21 +42,9 @@ public class MainActivity extends AppCompatActivity implements OnMateriaClickLis
 
     @Override
     public void onMateriaClick(View view, Materia materia, int position) {
-        if (getResources().getBoolean(R.bool.phone)) {
-            // Se for smartphone, abra uma nova activity
-
             Intent it = new Intent(MainActivity.this, MateriaDetalheActivity.class);
             it.putExtra(EXTRA_MATERIA, materia);
             startActivity(it);
-        } else {
-            // Se for tablet, DetalheActivityexiba um fragment a direita
-            //DetailMovieFragment detailMovieFragment = DetailMovieFragment.newInstance(movie);
-            //getSupportFragmentManager()
-              //      .beginTransaction()
-                //    .replace(R.id.placeholderDetail, detailMovieFragment)
-                  //  .commit();
-        }
-
     }
 
     private long adicionaMateriaFavoria(Materia materia)
