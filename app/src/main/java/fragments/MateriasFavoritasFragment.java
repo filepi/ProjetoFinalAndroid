@@ -30,6 +30,7 @@ import pojo.Materia;
  */
 public class MateriasFavoritasFragment  extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
+    public static final int DB_LOADER = 0;
     OnMateriaClickListener mMateriaClickListener;
     ListView listView;
     MateriaCursorAdapter mAdapter;
@@ -82,7 +83,7 @@ public class MateriasFavoritasFragment  extends Fragment implements LoaderManage
 
         // Inicializamos o loader para trazer os registros em background
 
-        getLoaderManager().initLoader(0, null, this);
+        getLoaderManager().initLoader(DB_LOADER, null, this);
 
         return view;
     }

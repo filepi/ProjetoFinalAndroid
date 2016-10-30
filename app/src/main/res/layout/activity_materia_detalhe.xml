@@ -32,6 +32,7 @@
         android:layout_margin="16dp"
         android:clickable="true"
         android:src="@drawable/ic_unfavorited"
+        android:onClick="toggleFavorite"
         app:layout_anchorGravity="bottom|right|end" />
 
 </LinearLayout>

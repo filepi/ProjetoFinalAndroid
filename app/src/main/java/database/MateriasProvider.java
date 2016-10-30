@@ -72,7 +72,6 @@ public class MateriasProvider extends ContentProvider {
 
             SQLiteDatabase db = mHelper.getWritableDatabase();
             long id = db.insert(MateriaContract.TABLE_NAME, null, values);
-            Toast.makeText(getContext(), "id: " +id + " inserido no banco", Toast.LENGTH_SHORT).show();
             db.close();
             // Se der erro na inclusão o id retornado é -1,
             // então levantamos a exceção para ser tratada na tela.
